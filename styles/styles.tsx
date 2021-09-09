@@ -13,5 +13,6 @@ export const Wrapper = styled.div`
 `;
 
 export const WrapperCountries = styled.div`
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/727/296/877/rick-and-morty-sunset-rick-sanchez-delorean-wallpaper-preview.jpg")
   margin: auto;
 `;
