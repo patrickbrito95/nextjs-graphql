@@ -26,7 +26,7 @@ export default function Home() {
       <WrapperCountries>
         {data?.characters.results.map((character) => (
           <Wrapper>
-            <div>Nome:{character.name}</div>
+            <div key={character.id}>Nome:{character.name}</div>
             <div>
               <span lang="pt-br">{character.status}</span>
             </div>
