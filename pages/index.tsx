@@ -1,18 +1,35 @@
 import Head from "next/head";
-import { useQuery } from "@apollo/client";
-
+import { ApolloClient, useQuery } from "@apollo/client";
+import { initializeApollo } from "../lib/apolloClient";
 import QUERY_CHARACTERS from "./queryCharacters.graphql";
 import { Wrapper, WrapperCountries } from "../styles/styles";
 import { Col } from "react-bootstrap";
 
-export default function Home() {
+export async function getStaticProps() {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: QUERY_CHARACTERS,
+  });
+
+  await apolloClient.query({
+    query: QUERY_CHARACTERS,
+  });
+
+  return {
+    props: {
+      initializeApolloState: apolloClient.cache.extract(),
+    },
+  };
+}
+
+export default function Home({ dataProps }) {
   const { data, loading, error } = useQuery(QUERY_CHARACTERS);
 
   if (error) {
     return <p>:( an error happened</p>;
   }
 
-  console.log(data);
   return (
     <Col>
       <Head>

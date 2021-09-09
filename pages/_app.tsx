@@ -1,15 +1,12 @@
 import type { AppProps } from "next/app";
-
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-
-const client = new ApolloClient({
-  uri: "https://rickandmortyapi.com/graphql",
-  cache: new InMemoryCache(),
-});
+import { useApollo } from "../lib/apolloClient";
+import { ApolloProvider } from "@apollo/client";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const apolloClient = useApollo(pageProps.initialApolloState);
+
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />
     </ApolloProvider>
   );
