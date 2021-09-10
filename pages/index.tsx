@@ -12,10 +12,6 @@ export async function getStaticProps() {
     query: QUERY_CHARACTERS,
   });
 
-  await apolloClient.query({
-    query: QUERY_CHARACTERS,
-  });
-
   return {
     props: {
       initializeApolloState: apolloClient.cache.extract(),
